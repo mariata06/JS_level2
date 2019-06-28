@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>eShop</title>
+            <!--*<script src ="script.js"></script>-->
+            <link type="text/css" rel="stylesheet" href="style.css">
+        </head>
+
+        <body>
+            <header>
+
+                <button class = "cart-button" type = "button" >Корзина</button>
+
+            </header>
+
+            <main>
+                <div class = "goods-list"></div>
+            </main>
+
+            <script type="text/javascript">
+                const goods = [
+                    { title : 'Shirt' , price : 150 },
+                    { title : 'Socks' , price : 50 },
+                    { title : 'Jacket' , price : 0 },
+                    { title : 'Shoes' , price : 250 },
+                    { title : '' , price : 150 },
+                    { title : 'Skirt' , price : 350 },
+                    { title : 'Dress' , price : 350 },
+                    { title : 'Boots' , price : 250 },
+                    { title : 'Jamper' , price : 300 },
+                    { title : 'Trousers' , price : 250 },
+                ];
+
+                const renderGoodsItem = (title, price) => {
+                    if(title === "") title = "Нет названия"; // значение по умолчанию, когда нет названия товара
+                    if(price === 0)
+                        return `<div class="goods-item"><h3> ${title} </h3><p> --- </p><button class="add-item">Добавить</button></div>`; // значение по умолчанию --- для цены , когда нет цены товара
+                    else
+                        return `<div class="goods-item"><h3> ${title} </h3><p> ${price} </p><button class="add-item">Добавить</button></div>`;
+                };
+
+                const renderGoodsList = (list) => {
+                    if(list.length === 0) { 
+                        let goodsList = `<div class="goods-item"><h2>НЕТ ДАННЫХ</h2></div>`; // выводится на экран если стереть массив товаров, т.е. нет никаких товаров
+                        document.querySelector( '.goods-list' ).innerHTML = goodsList;
+                    }    
+                    else {
+                    let goodsList = list.map(item => renderGoodsItem(item.title, item.price));
+                    document.querySelector( '.goods-list' ).innerHTML = goodsList;
+                    }
+                }
+                renderGoodsList(goods);
+            </script>
+
+        </body>
+</html>
+
+
+<!--
+picture: 'img/shirt.jpg', 
+<img ${picture} />
+src="img/shirt.jpg" alt="pic"
+-->
